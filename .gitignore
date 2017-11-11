@@ -1,0 +1,13 @@
+.DS_Store
+node_modules/
+build/
+npm-debug.log*
+README.md
+.babelrc
+.editorconfig
+debug.log
+.postcssrc.js
+
+# Editor directories and files
+.idea
+.vscode
