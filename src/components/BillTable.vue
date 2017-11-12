@@ -1,8 +1,8 @@
 <template>
   <table id="BillTable">
-    <TableHeader :columns="columns"/>
-    <TableBody :columns="columns"/>
-    <TableFooter :columns="columns"/>
+    <TableHeader :columns="tableData[0]"/>
+    <TableBody :tableData="tableData"/>
+    <TableFooter :tableData="tableData"/>
   </table>
 </template>
 
@@ -11,19 +11,21 @@
   import TableBody from './TableBody';
   import TableFooter from './TableFooter';
 
-  const columns = [
-    {
-      title: 'Наименование',
-      type: 'text',
-    },
-    {
-      title: 'Количество',
-      type: 'number',
-    },
-    {
-      title: 'Цена',
-      type: 'text',
-    },
+  const tableData = [
+    [
+      {
+        name: 'Наименование',
+        type: 'text',
+      },
+      {
+        name: 'Количество',
+        type: 'number',
+      },
+      {
+        name: 'Цена',
+        type: 'text',
+      },
+    ],
   ];
 
   export default {
@@ -34,7 +36,7 @@
     },
     data() {
       return {
-        columns,
+        tableData,
       };
     },
   };

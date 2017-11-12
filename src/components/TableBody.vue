@@ -1,30 +1,29 @@
 <template>
   <tbody>
-  <tr>
-    <td v-for="col in columns">
-      <app-input :name="col.title" :type="col.type"/>
-    </td>
-    <td>
-
-    </td>
-  </tr>
+    <table-row v-for="(rowData, index) in tableData"
+               :rowData="rowData"
+               :key="index"/>
   </tbody>
 </template>
 
 <script>
-  import appInput from './AppInput';
-
-  let value;
+  import tableRow from './TableRow';
 
   export default {
-    props: ['columns'],
+    props: ['tableData'],
     components: {
-      'app-input': appInput,
+      'table-row': tableRow,
     },
     data() {
       return {
-        value,
       };
+    },
+    methods: {
+      removeRow() {
+
+      },
+      updateValue() {
+      },
     },
   };
 </script>

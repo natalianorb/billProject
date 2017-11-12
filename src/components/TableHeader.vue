@@ -2,7 +2,7 @@
   <thead class="">
     <tr>
       <th v-for="col in columns">
-        {{col.title}}
+        {{col.name}}
       </th>
       <th>
 

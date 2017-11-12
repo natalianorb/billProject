@@ -9,7 +9,7 @@
 
 <script>
   export default {
-    props: ['columns'],
+    props: ['tableData'],
   };
 </script>
 
