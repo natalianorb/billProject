@@ -12,9 +12,18 @@
   import TableFooter from './TableFooter';
 
   const columns = [
-    'Наименование',
-    'Количество',
-    'Цена',
+    {
+      title: 'Наименование',
+      type: 'text',
+    },
+    {
+      title: 'Количество',
+      type: 'count',
+    },
+    {
+      title: 'Цена',
+      type: 'monetary',
+    },
   ];
 
   export default {
@@ -24,8 +33,6 @@
       TableFooter,
     },
     data() {
-      /* additional column for buttons on the right side of the table */
-      columns.push('');
       return {
         columns,
       };

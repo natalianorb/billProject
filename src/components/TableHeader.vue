@@ -2,7 +2,10 @@
   <thead class="">
     <tr>
       <th v-for="col in columns">
-        {{col}}
+        {{col.title}}
+      </th>
+      <th>
+
       </th>
     </tr>
   </thead>

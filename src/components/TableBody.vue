@@ -1,14 +1,8 @@
 <template>
   <tbody>
   <tr>
-    <td>
-      <text-input/>
-    </td>
-    <td>
-      <count-input/>
-    </td>
-    <td>
-      <monetary-input/>
+    <td v-for="col in columns">
+      <app-input :name="col.title" :type="col.type"/>
     </td>
     <td>
 
@@ -18,18 +12,14 @@
 </template>
 
 <script>
-  import textInput from './inputs/TextInput';
-  import countInput from './inputs/CountInput';
-  import monetaryInput from './inputs/MonetaryInput';
+  import appInput from './AppInput';
 
   let value;
 
   export default {
     props: ['columns'],
     components: {
-      'text-input': textInput,
-      'count-input': countInput,
-      'monetary-input': monetaryInput,
+      'app-input': appInput,
     },
     data() {
       return {
