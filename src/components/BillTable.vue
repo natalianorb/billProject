@@ -18,11 +18,11 @@
     },
     {
       title: 'Количество',
-      type: 'count',
+      type: 'number',
     },
     {
       title: 'Цена',
-      type: 'monetary',
+      type: 'text',
     },
   ];
 
