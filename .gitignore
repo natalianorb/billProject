@@ -2,7 +2,6 @@
 node_modules/
 build/
 npm-debug.log*
-README.md
 .babelrc
 .editorconfig
 debug.log
