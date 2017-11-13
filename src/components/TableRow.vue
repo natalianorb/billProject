@@ -2,10 +2,8 @@
   <tr>
     <td v-for="(cell, index) in rowData"
         :key="index">
-      <app-input :name="cell.name"
-                 :type="cell.type"
-                 :index="index"
-                 @update="updateValue"/>
+      <app-input :attributes="cell"
+                 v-model="productData[index]"/>
     </td>
     <td>
       <delete-row v-on:click="passDeleteEvent"/>
@@ -25,14 +23,11 @@
     },
     data() {
       return {
-        productData: Object.assign({}, this.rowData),
+        productData: Object.assign([], this.rowData),
       };
     },
     methods: {
       passDeleteEvent() {
-      },
-      updateValue(data, index) {
-        this.$set(this.productData, index, data);
       },
     },
   };

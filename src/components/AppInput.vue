@@ -1,7 +1,7 @@
 <template>
   <label>
-    <input :name="name"
-           :type="type"
+    <input :name="attributes.name"
+           :type="attributes.type"
            v-model="value"
            @input="passValue"/>
   </label>
@@ -9,9 +9,11 @@
 
 <script>
   export default {
-    props: ['name', 'type', 'index'],
+    props: ['attributes'],
     data() {
       return {
+        name: this.attributes.name,
+        type: this.attributes.type,
         value: '',
       };
     },
@@ -23,7 +25,7 @@
           value: this.value,
         };
 
-        this.$emit('update', data, this.index);
+        this.$emit('input', data);
       },
     },
   };
