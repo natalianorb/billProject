@@ -1,9 +1,11 @@
 <template>
-  <table id="BillTable">
-    <TableHeader :columns="tableData[0]"/>
-    <TableBody :tableData="tableData"/>
-    <TableFooter :tableData="tableData"/>
-  </table>
+  <form action="">
+    <table id="BillTable">
+      <TableHeader :columns="tableData[0]"/>
+      <TableBody :tableData="tableData"/>
+      <TableFooter :tableData="tableData"/>
+    </table>
+  </form>
 </template>
 
 <script>
