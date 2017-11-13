@@ -1,12 +1,12 @@
 <template>
-  <tr>
+  <tr @input="passValue">
     <td v-for="(cell, index) in rowData"
         :key="index">
       <app-input :attributes="cell"
-                 v-model="productData[index]"/>
+                 v-model="productProperties[index]"/>
     </td>
     <td>
-      <delete-row v-on:click="passDeleteEvent"/>
+      <delete-row @click="passDeleteEvent"/>
     </td>
   </tr>
 </template>
@@ -23,11 +23,15 @@
     },
     data() {
       return {
-        productData: Object.assign([], this.rowData),
+        productProperties: Object.assign([], this.rowData),
       };
     },
     methods: {
+      passValue() {
+        this.$emit('input', this.productProperties);
+      },
       passDeleteEvent() {
+        this.$emit('deleteRow');
       },
     },
   };

@@ -1,8 +1,10 @@
 <template>
   <tbody>
     <table-row v-for="(rowData, index) in tableData"
+               :key="index"
                :rowData="rowData"
-               :key="index"/>
+               v-model="products[index]"
+                @deleteRow="deleteRow(index)"/>
   </tbody>
 </template>
 
@@ -16,10 +18,11 @@
     },
     data() {
       return {
+        products: Object.assign([], this.tableData),
       };
     },
     methods: {
-      removeRow() {
+      deleteRow() {
 
       },
       updateValue() {
