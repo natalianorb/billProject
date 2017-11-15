@@ -5,21 +5,29 @@
 </template>
 
 <script>
-import BillTable from './components/BillTable';
+  import BillTable from './components/BillTable';
 
-export default {
-  name: 'app',
-  components: {
-    BillTable,
-  },
-};
+  export default {
+    name: 'app',
+    components: {
+      BillTable,
+    },
+  };
 </script>
 
 <style>
-#app {
-  font-family: Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-}
+  html {
+    font-size: 15px;
+    font-family: "Roboto", sans-serif;
+    font-weight: normal;
+  }
+  input {
+    padding: 0;
+    background-color: transparent;
+    outline: none;
+  }
+  #app {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 </style>

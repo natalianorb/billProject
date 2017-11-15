@@ -1,7 +1,7 @@
 <template>
-  <thead class="">
+  <thead class="table__head">
     <tr>
-      <th v-for="col in columns">
+      <th v-for="col in columns" class="table__th">
         {{col.name}}
       </th>
       <th>
@@ -18,4 +18,10 @@
 </script>
 
 <style scoped>
+  .table__head {
+  }
+  .table__th {
+    min-width: 170px;
+    height: 2rem;
+  }
 </style>

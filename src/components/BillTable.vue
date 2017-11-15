@@ -44,5 +44,19 @@
   };
 </script>
 
-<style scoped>
+<style>
+  #BillTable {
+    border-collapse: collapse;
+  }
+  #BillTable * {
+    box-sizing: border-box;
+  }
+  #BillTable th,
+  #BillTable td {
+    height: 2.5rem;
+    padding: 0;
+  }
+  #BillTable input[type="button"] {
+    width: 125px;
+  }
 </style>
