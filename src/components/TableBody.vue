@@ -1,10 +1,15 @@
 <template>
   <tbody>
-    <table-row v-for="(rowData, index) in tableData"
+    <table-row v-for="(product, index) in products"
                :key="index"
-               :rowData="rowData"
+               :rowData="product"
                v-model="products[index]"
                 @deleteRow="deleteRow(index)"/>
+  <tr>
+    <td>
+      <input type="button" @click="addRow" value="Добавить строку"/>
+    </td>
+  </tr>
   </tbody>
 </template>
 
@@ -22,8 +27,11 @@
       };
     },
     methods: {
-      deleteRow() {
-
+      addRow() {
+        this.products.push(this.tableData[0]);
+      },
+      deleteRow(index) {
+        this.products.splice(index, 1);
       },
       updateValue() {
       },
