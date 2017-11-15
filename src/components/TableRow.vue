@@ -6,20 +6,18 @@
                  v-model="productProperties[index]"/>
     </td>
     <td>
-      <delete-row @click="passDeleteEvent"/>
+      <input type="button" value="Удалить строку" @click="passDeleteEvent"/>
     </td>
   </tr>
 </template>
 
 <script>
   import appInput from './AppInput';
-  import deleteRow from './buttons/DeleteRow';
 
   export default {
     props: ['rowData'],
     components: {
       'app-input': appInput,
-      'delete-row': deleteRow,
     },
     data() {
       return {
