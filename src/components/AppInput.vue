@@ -2,8 +2,8 @@
   <label>
     <input :name="attributes.name"
            :type="attributes.type"
-           v-model="value"
-           @input="passValue"/>
+           v-model="newAttributes.value"
+           @input="returnNewAttributes"/>
   </label>
 </template>
 
@@ -12,20 +12,16 @@
     props: ['attributes'],
     data() {
       return {
-        name: this.attributes.name,
-        type: this.attributes.type,
-        value: '',
+        newAttributes: {
+          name: this.attributes.name,
+          type: this.attributes.type,
+          value: null,
+        },
       };
     },
     methods: {
-      passValue() {
-        const data = {
-          name: this.name,
-          type: this.type,
-          value: this.value,
-        };
-
-        this.$emit('input', data);
+      returnNewAttributes() {
+        this.$emit('input', this.newAttributes);
       },
     },
   };
