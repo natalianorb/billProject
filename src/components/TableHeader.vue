@@ -5,7 +5,6 @@
         {{col.name}}
       </th>
       <th>
-
       </th>
     </tr>
   </thead>

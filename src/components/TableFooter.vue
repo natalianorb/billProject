@@ -1,10 +1,12 @@
 <template>
   <tfoot class="table__footer">
   <tr>
-    <td v-for="(cell, index) in tableData[0]"
-        :key="index">
+    <td colspan="2">
     </td>
-    <td>
+    <td class="align-center">
+      {{total}}
+    </td>
+    <td class="align-center">
       Итог
     </td>
   </tr>
@@ -13,7 +15,22 @@
 
 <script>
   export default {
-    props: ['tableData'],
+    props: ['newProductsData'],
+    data() {
+      let total = 0;
+
+      this.newProductsData.forEach((product) => {
+        const amount = product['Количество'];
+        const price = product['Цена'];
+        total += parseFloat(amount) * parseFloat(price);
+      });
+
+      total = total.toString();
+      total = (total === 'NaN') ? 0 : total;
+      return {
+        total,
+      };
+    },
   };
 </script>
 
@@ -21,5 +38,11 @@
   .table__footer {
     background-color: #009688;
     color: #fff;
+  }
+  .align-right {
+    text-align: right;
+  }
+  .align-center {
+    text-align: center;
   }
 </style>

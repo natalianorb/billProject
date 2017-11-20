@@ -1,12 +1,12 @@
 <template>
-  <tbody>
+  <tbody @input="updateValue">
     <table-row v-for="(product, index) in products"
                :key="index"
-               :rowData="product"
+               :rowStructure="tableData[0]"
                v-model="products[index]"
                 @deleteRow="deleteRow(index)"/>
   <tr>
-    <td :colspan="products && products[0]? products[0].length + 1 : false" class="right-align">
+    <td :colspan="tableData[0].length + 1" class="right-align">
       <input type="button" @click="addRow" value="Добавить строку" class="button__add-row"/>
     </td>
   </tr>
@@ -21,6 +21,16 @@
     components: {
       'table-row': tableRow,
     },
+    computed: {
+      defaultProduct() {
+        const firstRowData = this.tableData[0];
+        const product = {};
+        firstRowData.forEach((cellData) => {
+          product[cellData.name] = null;
+        });
+        return product;
+      },
+    },
     data() {
       return {
         products: Object.assign([], this.tableData),
@@ -34,6 +44,7 @@
         this.products.splice(index, 1);
       },
       updateValue() {
+        this.$emit('input', this.products);
       },
     },
   };

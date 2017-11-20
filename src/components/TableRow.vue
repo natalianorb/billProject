@@ -1,9 +1,10 @@
 <template>
   <tr @input="passValue">
-    <td v-for="(cell, index) in rowData"
+    <td v-for="(cell, index) in rowStructure"
         :key="index">
-      <app-input :attributes="cell"
-                 v-model="productProperties[index]"/>
+      <app-input :name="cell.name"
+                 :type="cell.type"
+                 v-model="productProperties[cell.name]"/>
     </td>
     <td>
       <input type="button" value="Удалить строку" @click="passDeleteEvent" class="button__delete-row"/>
@@ -15,13 +16,18 @@
   import appInput from './AppInput';
 
   export default {
-    props: ['rowData'],
+    props: ['rowStructure'],
     components: {
       'app-input': appInput,
     },
     data() {
+      const productProperties = {};
+
+      this.rowStructure.forEach((productProperty) => {
+        productProperties[productProperty.name] = null;
+      });
       return {
-        productProperties: Object.assign([], this.rowData),
+        productProperties,
       };
     },
     methods: {

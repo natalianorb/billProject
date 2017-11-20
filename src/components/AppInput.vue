@@ -1,28 +1,24 @@
 <template>
   <label>
-    <input :name="attributes.name"
-           :type="attributes.type"
-           v-model="newAttributes.value"
-           @input="returnNewAttributes"
+    <input :name="name"
+           :type="type"
+           v-model="value"
+           @input="returnValue"
            class="input"/>
   </label>
 </template>
 
 <script>
   export default {
-    props: ['attributes'],
+    props: ['name', 'type'],
     data() {
       return {
-        newAttributes: {
-          name: this.attributes.name,
-          type: this.attributes.type,
-          value: null,
-        },
+        value: null,
       };
     },
     methods: {
-      returnNewAttributes() {
-        this.$emit('input', this.newAttributes);
+      returnValue() {
+        this.$emit('input', this.value);
       },
     },
   };

@@ -2,8 +2,8 @@
   <form action="">
     <table id="BillTable">
       <TableHeader :columns="tableData[0]"/>
-      <TableBody :tableData="tableData"/>
-      <TableFooter :tableData="tableData"/>
+      <TableBody :tableData="tableData" v-model="newProductsData"/>
+      <TableFooter :newProductsData="newProductsData"/>
     </table>
   </form>
 </template>
@@ -39,6 +39,7 @@
     data() {
       return {
         tableData,
+        newProductsData: [],
       };
     },
   };
