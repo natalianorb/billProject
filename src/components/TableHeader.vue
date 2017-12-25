@@ -1,7 +1,7 @@
 <template>
   <thead class="table__head">
     <tr>
-      <th v-for="col in columns" class="table__th">
+      <th v-for="col in columnTitles" class="table__th">
         {{col.name}}
       </th>
       <th>
@@ -12,7 +12,7 @@
 
 <script>
   export default {
-    props: ['columns'],
+    props: ['columnTitles'],
   };
 </script>
 

@@ -16,20 +16,19 @@
 <script>
   export default {
     props: ['newProductsData'],
-    data() {
-      let total = 0;
+    computed: {
+      total() {
+        let total = 0;
 
-      this.newProductsData.forEach((product) => {
-        const amount = product['Количество'];
-        const price = product['Цена'];
-        total += parseFloat(amount) * parseFloat(price);
-      });
+        this.newProductsData.forEach((product) => {
+          const amount = product['Количество'] || 0;
+          const price = product['Цена'] || 0;
+          total += parseFloat(amount) * parseFloat(price);
+        });
 
-      total = total.toString();
-      total = (total === 'NaN') ? 0 : total;
-      return {
-        total,
-      };
+        total = (total.toFixed(2)).toString();
+        return total;
+      },
     },
   };
 </script>

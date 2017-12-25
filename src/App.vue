@@ -25,6 +25,7 @@
     padding: 0;
     background-color: transparent;
     outline: none;
+    text-align: center;
   }
   #app {
     -webkit-font-smoothing: antialiased;

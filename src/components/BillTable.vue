@@ -1,8 +1,8 @@
 <template>
   <form action="">
     <table id="BillTable">
-      <TableHeader :columns="tableData[0]"/>
-      <TableBody :tableData="tableData" v-model="newProductsData"/>
+      <TableHeader :columnTitles="tableProps"/>
+      <TableBody :tableProps="tableProps" v-model="newProductsData"/>
       <TableFooter :newProductsData="newProductsData"/>
     </table>
   </form>
@@ -13,21 +13,19 @@
   import TableBody from './TableBody';
   import TableFooter from './TableFooter';
 
-  const tableData = [
-    [
-      {
-        name: 'Наименование',
-        type: 'text',
-      },
-      {
-        name: 'Количество',
-        type: 'number',
-      },
-      {
-        name: 'Цена',
-        type: 'text',
-      },
-    ],
+  const tableProps = [
+    {
+      name: 'Наименование',
+      type: 'text',
+    },
+    {
+      name: 'Количество',
+      type: 'number',
+    },
+    {
+      name: 'Цена',
+      type: 'text',
+    },
   ];
 
   export default {
@@ -38,7 +36,7 @@
     },
     data() {
       return {
-        tableData,
+        tableProps,
         newProductsData: [],
       };
     },
@@ -51,6 +49,9 @@
   }
   #BillTable * {
     box-sizing: border-box;
+  }
+  #BillTable tbody tr:last-child {
+    text-align: center;
   }
   #BillTable th,
   #BillTable td {

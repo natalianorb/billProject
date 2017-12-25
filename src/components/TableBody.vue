@@ -1,12 +1,19 @@
 <template>
   <tbody @input="updateValue">
-    <table-row v-for="(product, index) in products"
-               :key="index"
-               :rowStructure="tableData[0]"
-               v-model="products[index]"
-                @deleteRow="deleteRow(index)"/>
+  <tr v-for="(product, index) in products"
+      :key="product.id">
+    <td v-for="(property, i) in tableProps"
+        :key="i">
+      <app-input :name="property.name"
+                 :type="property.type"
+                 v-model="product[property.name]"/>
+    </td>
+    <td>
+      <input type="button" value="Удалить строку" @click="deleteRow(index)" class="button__delete-row"/>
+    </td>
+  </tr>
   <tr>
-    <td :colspan="tableData[0].length + 1" class="right-align">
+    <td :colspan="tableProps.length + 1">
       <input type="button" @click="addRow" value="Добавить строку" class="button__add-row"/>
     </td>
   </tr>
@@ -14,34 +21,34 @@
 </template>
 
 <script>
-  import tableRow from './TableRow';
+  import appInput from './AppInput';
 
   export default {
-    props: ['tableData'],
+    props: ['tableProps'],
     components: {
-      'table-row': tableRow,
-    },
-    computed: {
-      defaultProduct() {
-        const firstRowData = this.tableData[0];
-        const product = {};
-        firstRowData.forEach((cellData) => {
-          product[cellData.name] = null;
-        });
-        return product;
-      },
+      'app-input': appInput,
     },
     data() {
+      const products = [];
+      products.push(Object.assign({}, this.newProduct()));
       return {
-        products: Object.assign([], this.tableData),
+        products,
       };
     },
     methods: {
       addRow() {
-        this.products.push(this.tableData[0]);
+        this.products.push(Object.assign({}, this.newProduct()));
       },
       deleteRow(index) {
         this.products.splice(index, 1);
+      },
+      newProduct() {
+        const product = {};
+        this.tableProps.forEach((columnProp) => {
+          product[columnProp.name] = null;
+        });
+        product.id = Math.random().toString(36).substr(2, 9);
+        return product;
       },
       updateValue() {
         this.$emit('input', this.products);
@@ -67,5 +74,20 @@
   }
   .right-align {
     text-align: right;
+  }
+  .button__delete-row {
+    padding: 5px 10px;
+    background-color: #ef5350;
+    line-height: 1.4rem;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 3px;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
+    transition: background-color .3s ease-out;
+    outline: none;
+  }
+  .button__delete-row:hover {
+    background-color: #e53935;
   }
 </style>
