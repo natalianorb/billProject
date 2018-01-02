@@ -1,6 +1,6 @@
-# bill_project
+# Packing List
 
-> A Vue.js project
+> A Vue + Vuex project
 
 ## Build Setup
 

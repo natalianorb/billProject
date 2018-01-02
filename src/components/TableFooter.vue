@@ -23,7 +23,7 @@
         this.newProductsData.forEach((product) => {
           const amount = product['Количество'] || 0;
           const price = product['Цена'] || 0;
-          total += parseFloat(amount) * parseFloat(price);
+          total += Number.parseFloat(amount) * Number.parseFloat(price);
         });
 
         total = (total.toFixed(2)).toString();
