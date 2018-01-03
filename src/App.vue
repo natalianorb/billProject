@@ -2,9 +2,9 @@
   <div id="app">
     <form action="">
       <table id="PackingList">
-        <TableHeader :columnTitles="tableProps"/>
-        <TableBody :tableProps="tableProps" v-model="newProductsData"/>
-        <TableFooter :newProductsData="newProductsData"/>
+        <TableHeader/>
+        <TableBody/>
+        <TableFooter/>
       </table>
     </form>
   </div>
@@ -15,33 +15,12 @@
   import TableBody from './components/TableBody';
   import TableFooter from './components/TableFooter';
 
-  const tableProps = [
-    {
-      name: 'Наименование',
-      type: 'text',
-    },
-    {
-      name: 'Количество',
-      type: 'number',
-    },
-    {
-      name: 'Цена',
-      type: 'text',
-    },
-  ];
-
   export default {
     name: 'app',
     components: {
       TableHeader,
       TableBody,
       TableFooter,
-    },
-    data() {
-      return {
-        tableProps,
-        newProductsData: [],
-      };
     },
   };
 </script>
@@ -74,9 +53,17 @@
   #PackingList th,
   #PackingList td {
     height: 2.5rem;
+    min-width: 170px;
     padding: 0;
   }
   #PackingList input[type="button"] {
     width: 125px;
+  }
+  #PackingList .align-center {
+    text-align: center;
+  }
+  #PackingList tfoot {
+    background-color: #009688;
+    color: #fff;
   }
 </style>

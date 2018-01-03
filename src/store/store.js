@@ -5,19 +5,34 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    newProduct() {
-      const product = {};
-      this.tableProps.forEach((columnProp) => {
-        product[columnProp.name] = null;
-      });
-      product.id = Math.random().toString(36).substr(2, 9);
-      return product;
-    },
+    tableProps: [
+      {
+        name: 'Item',
+        type: 'text',
+      },
+      {
+        name: 'Quantity',
+        type: 'number',
+      },
+      {
+        name: 'Price',
+        type: 'text',
+      },
+    ],
     newProductsData: [],
   },
   mutations: {
     addProduct(state) {
-      state.newProductsData.push(state.newProduct());
+      const product = {
+        Наименование: '',
+        Количество: '',
+        Цена: '',
+      };
+      product.id = Math.random().toString(36).substr(2, 9);
+      state.newProductsData.push(product);
+    },
+    deleteProduct(state, index) {
+      state.newProductsData.splice(index, 1);
     },
   },
 });

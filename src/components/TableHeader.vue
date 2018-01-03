@@ -1,7 +1,7 @@
 <template>
-  <thead class="table__head">
+  <thead>
     <tr>
-      <th v-for="col in columnTitles" class="table__th">
+      <th v-for="col in tableProps">
         {{col.name}}
       </th>
       <th>
@@ -11,16 +11,15 @@
 </template>
 
 <script>
+  import { mapState } from 'vuex';
+
   export default {
-    props: ['columnTitles'],
+    computed: mapState([
+      'tableProps',
+    ]),
   };
 </script>
 
 <style scoped>
-  .table__head {
-  }
-  .table__th {
-    min-width: 170px;
-    height: 2rem;
-  }
 </style>
+s

@@ -1,6 +1,6 @@
 <template>
-  <tbody @input="updateValue">
-  <tr v-for="(product, index) in products"
+  <tbody>
+  <tr v-for="(product, index) in newProductsData"
       :key="product.id">
     <td v-for="(property, i) in tableProps"
         :key="i">
@@ -8,50 +8,36 @@
                  :type="property.type"
                  v-model="product[property.name]"/>
     </td>
-    <td>
-      <input type="button" value="Удалить строку" @click="deleteRow(index)" class="button__delete-row"/>
+    <td class="align-center">
+      <input type="button" value="Remove item" @click="deleteRow(index)" class="button__delete-row"/>
     </td>
   </tr>
   <tr>
     <td :colspan="tableProps.length + 1">
-      <input type="button" @click="addRow" value="Добавить строку" class="button__add-row"/>
+      <input type="button" @click="addRow" value="Add item" class="button__add-row"/>
     </td>
   </tr>
   </tbody>
 </template>
 
 <script>
+  import { mapState } from 'vuex';
   import appInput from './AppInput';
 
   export default {
-    props: ['tableProps'],
     components: {
       'app-input': appInput,
     },
-    data() {
-      const products = [];
-      products.push(Object.assign({}, this.newProduct()));
-      return {
-        products,
-      };
-    },
+    computed: mapState([
+      'tableProps',
+      'newProductsData',
+    ]),
     methods: {
       addRow() {
-        this.products.push(Object.assign({}, this.newProduct()));
+        this.$store.commit('addProduct');
       },
       deleteRow(index) {
-        this.products.splice(index, 1);
-      },
-      newProduct() {
-        const product = {};
-        this.tableProps.forEach((columnProp) => {
-          product[columnProp.name] = null;
-        });
-        product.id = Math.random().toString(36).substr(2, 9);
-        return product;
-      },
-      updateValue() {
-        this.$emit('input', this.products);
+        this.$store.commit('deleteProduct', index);
       },
     },
   };
@@ -71,9 +57,6 @@
   }
   .button__add-row:hover {
     background-color: #00897b;
-  }
-  .right-align {
-    text-align: right;
   }
   .button__delete-row {
     padding: 5px 10px;

@@ -1,47 +1,41 @@
 <template>
-  <tfoot class="table__footer">
+  <tfoot>
   <tr>
-    <td colspan="2">
+    <td>
+    </td>
+    <td>
     </td>
     <td class="align-center">
       {{total}}
     </td>
     <td class="align-center">
-      Итог
+      Total
     </td>
   </tr>
   </tfoot>
 </template>
 
 <script>
+  import { mapState } from 'vuex';
+
   export default {
-    props: ['newProductsData'],
-    computed: {
+    computed: mapState({
+      newProductsData: 'newProductsData',
       total() {
         let total = 0;
 
         this.newProductsData.forEach((product) => {
-          const amount = product['Количество'] || 0;
-          const price = product['Цена'] || 0;
+          const amount = product.Quantity || 0;
+          const price = product.Price || 0;
           total += Number.parseFloat(amount) * Number.parseFloat(price);
         });
 
         total = (total.toFixed(2)).toString();
         return total;
       },
-    },
+    }),
   };
 </script>
 
 <style scoped>
-  .table__footer {
-    background-color: #009688;
-    color: #fff;
-  }
-  .align-right {
-    text-align: right;
-  }
-  .align-center {
-    text-align: center;
-  }
 </style>
